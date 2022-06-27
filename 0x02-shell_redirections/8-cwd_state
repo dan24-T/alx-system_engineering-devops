@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -la |awk '{printf $9 "\n"}' > ls_cwd_content
+ls -la  > ls_cwd_content
