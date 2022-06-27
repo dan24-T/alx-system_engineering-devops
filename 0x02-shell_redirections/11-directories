@@ -1,2 +1,2 @@
 #!/bin/bash
-ls-lRa | egrep -c '^-'
+find . -not -path '*/\.*' -type f | wc -l
