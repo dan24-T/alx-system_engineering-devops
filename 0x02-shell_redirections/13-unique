@@ -1,1 +1,2 @@
-#!/bin/bash 14-findthatword 15-countthatword 16-whatsnext 17-hidethisword 18-letteronly 20-hiago 21-reverse 22-users_and_homes
+#!/bin/bash 
+cat . | sort | uniq -c | grep -e '^\s.*1\s' | awk '{print $NF}'
