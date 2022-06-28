@@ -1,1 +1,2 @@
-#!/bin/bash 16-whatsnext 17-hidethisword 18-letteronly 20-hiago 21-reverse 22-users_and_homes
+#!/bin/bash 
+grep -n "bin" /etc/passwd
