@@ -1,2 +1,2 @@
 #!/bin/bash
-grep 'bin' /etc/passwd | awk -F  ":" '{print $1}'
+grep -r 'root' /etc/passwd 
