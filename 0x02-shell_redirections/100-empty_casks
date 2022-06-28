@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -empty | ls -1aR
+find . -type fd -empty | ls -1aR
