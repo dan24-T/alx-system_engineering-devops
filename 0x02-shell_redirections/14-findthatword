@@ -1,2 +1,2 @@
 #!/bin/bash
-fgrep "root" /etc/passwd
+grep -n 'root' /etc/passwd
