@@ -1,47 +1,21 @@
-# API advanced
+Listings do not use page numbers because their content changes so frequently. Instead, they allow you to view slices of the underlying data. Listing JSON responses contain after and before fields which are equivalent to the "next" and "prev" buttons on the site and in combination with count can be used to page through the listing.
 
-I continued to practice querying API's in this advanced project, this time
-working with the Reddit API.
+The common parameters are as follows:
 
-## Tests :heavy_check_mark:
+after / before - only one should be specified. these indicate the fullname of an item in the listing to use as the anchor point of the slice.
+limit - the maximum number of items to return in this slice of the listing.
+count - the number of items already seen in this listing. on the html site, the builder uses this to determine when to give values for before and after in the response.
+show - optional parameter; if all is passed, filters such as "hide links that I have voted on" will be disabled.
+To page through a listing, start by fetching the first page without specifying values for after and count. The response will contain an after value which you can pass in the next request. It is a good idea, but not required, to send an updated value for count which should be the number of items already fetched.
 
-* [tests](./tests): Folder of test files for all tasks. Provided by ALX.
+modhashes
+A modhash is a token that the reddit API requires to help prevent CSRF. Modhashes can be obtained via the /api/me.json call or in response data of listing endpoints.
 
-## Function Prototypes :floppy_disk:
+The preferred way to send a modhash is to include an X-Modhash custom HTTP header with your requests.
 
-Prototypes for functions written in this project:
+Modhashes are not required when authenticated with OAuth.
 
-| File           | Prototype                               |
-| -------------- | --------------------------------------- |
-| `0-subs.py`    | `def number_of_subscribers(subreddit)`  |
-| `1-top_ten.py` | `def top_ten(subreddit)`                |
-| `2-recurse.py` | `def recurse(subreddit, hot_list=[])`   |
-| `100-count.py` | `def count_words(subreddit, word_list)` |
+fullnames
+A fullname is a combination of a thing's type (e.g. Link) and its unique ID which forms a compact encoding of a globally unique ID on reddit.
 
-## Tasks :page_with_curl:
-
-* **0. How many subs?**
-  * [0-subs.py](./0-subs.py): Python function that returns the total number of
-  subscribers for a given subreddit.
-  * Returns `0` if an invalid subreddit is given.
-
-* **1. Top Ten**
-  * [1-top_ten.py](./1-top_ten.py): Python function that prints the top ten
-  hottest posts for a given subreddit.
-  * Prints `None` if an invalid subreddit is given.
-
-* **2. Recurse it!**
-  * [2-recurse.py](./2-recurse.py): Python function that recursively returns a
-  list of titles for all hot articles on a given subreddit.
-  * Returns `None` if no results are found on the given subreddit.
-
-* **3. Count it!**
-  * [100-count.py](./100-count.py): Python function that recursively prints a
-  sorted count of given keywords parsed from titles of all hot articles on a given
-  subreddit.
-  * Keywords are case-insensitive and delimited by spaces.
-  * Results are printed in descending order by count.
-  * Words with identical counts are sorted alphabetically.
-  * Words with no matches are skipped.
-  * Results are based on the number of times a keyword appears - ie.,
-  `java java java` counts as three separate instances of `java`.
+Fullnames start with the type prefix for the object's type, followed by the thing's unique ID in base 36. For example, t3_15bfi0.

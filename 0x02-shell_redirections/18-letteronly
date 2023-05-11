@@ -1,2 +1,0 @@
-#!/bin/bash
-grep '(^[\s]+[A-Z][a-z]+)|(^[A-Z][a-z]+)' /etc/ssh/sshd_config

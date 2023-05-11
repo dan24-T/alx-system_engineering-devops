@@ -1,5 +1,0 @@
-Host server1
-    HostName 35.168.110.51
-    User ubuntu
-    IdentityFile ~/.ssh/school
-    PasswordAuthentication no
